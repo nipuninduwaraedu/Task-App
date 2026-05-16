@@ -1,7 +1,7 @@
 import "../models/task.js";
 import Task from "../models/task.js";
 
-const createTask = async (req, res) => {
+export const createTask = async (req, res) => {
   try {
     const { titel } = req.body;
 
