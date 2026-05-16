@@ -1,4 +1,5 @@
 import "../models/task.js";
+import Task from "../models/task.js";
 
 const createTask = async (req, res) => {
   try {
@@ -19,6 +20,26 @@ export const getTask = async (req, res)=>{
     const tasks = await Task.find();
 
     res.json(tasks);
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
+export const updateTask = async (req, res)=>{
+  try {
+    const task = await Task.findById(req.parms.id);
+
+    if(!task){
+      return res.status(404).json({
+        message: "Task not found",
+      });
+    }
+
+    task.title =req.body.title || task.title;
+
+    const updateTask = await task.save();
   } catch (error) {
     res.status(500).json({
       message: error.message,
