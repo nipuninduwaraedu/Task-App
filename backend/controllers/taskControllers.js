@@ -63,7 +63,7 @@ export const deleteTask = async (req, res)=>{
       message:"Task deleted",
     });
   } catch (error) {
-    res.status.(500).json({
+    res.status(500).json({
       message: error.message,
     });
   }
